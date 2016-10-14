@@ -145,7 +145,6 @@ html {
   color: #ccc;
   padding: 15px 10px;
   background: #343436;
-  border-top: 2px solid #FEDD31;
   margin-bottom: 10px;
   cursor: pointer;
 }
@@ -199,6 +198,21 @@ html {
   bottom: 0;
   width: 25%;
   right:0;
+  padding: 20px;
+  background: #0a0a0a;
+  border: 0;
+  outline: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  color: white;
+}
+
+
+.input_button1 {
+  position: absolute;
+  bottom: 0;
+  width: 25%;
+  right:25%;
   padding: 20px;
   background: #0a0a0a;
   border: 0;

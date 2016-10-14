@@ -14,8 +14,8 @@ server.listen(8000);
 io.set("origins", "*:*");
 
 var currentPrice = 99;
-var messages = [{id: 1,text: "hey yo!",name: "Jaithrik",sender: true},{id: 2,text: "hi",name: "Visal",sender: false},{id: 3,text: "whats up?",name: "Jaithrik",sender: true}];
-
+var messages = [{id: 1, group_id: 2,text: "Can we incorporate more changes into this?",name: "Frieda Pala",sender: true},{id: 2, group_id: 2, text: "Will complete it by EOD",name: "Ferdinand Frois",sender: false},{id: 3,group_id: 2,text: "whats up?",name: "Frieda Pala",sender: true},{id: 122,group_id: 2,text: "Evidence.pdf",name: "attachment",sender: false}];
+var groups = [{id: 1,name: "Ferdinand Frois modified matter Aliens vs Planet"},{id: 2,name: "Frieda Pala added Task 1"},{id: 4,name: "Frieda Pala attached Time Meditation/Arbitr... to the matter Aliens vs Planet"},{id: 5,name: "Frieda Pala attached task test to the time Meditation/Arbitr..."}];
 
 io.on('connection',function(socket){
 	socket.emit('message',messages);
@@ -26,6 +26,16 @@ io.on('connection',function(socket){
 		console.log(messages);
 	});
 });
+
+io.on('connection',function(socket){
+	socket.emit('groups',groups);
+	socket.on('add_group',function(data1){
+		groups.push(data1);
+		socket.emit('groups',groups);
+		socket.broadcast.emit('groups',groups);
+	});
+});
+
 
 
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
