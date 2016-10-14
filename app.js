@@ -14,15 +14,19 @@ server.listen(8000);
 io.set("origins", "*:*");
 
 var currentPrice = 99;
+var messages = [{id: 1,text: "hey yo!",name: "Jaithrik",sender: true},{id: 2,text: "hi",name: "Visal",sender: false},{id: 3,text: "whats up?",name: "Jaithrik",sender: true}];
 
-io.on('connection', function (socket) {
-	socket.emit('priceUpdate',currentPrice);
-	socket.on('bid', function (data) {
-		currentPrice = parseInt(data);
-		socket.emit('priceUpdate',currentPrice+100);
-		socket.broadcast.emit('priceUpdate',currentPrice+10);
+
+io.on('connection',function(socket){
+	socket.emit('message',messages);
+	socket.on('latest_message',function(data){
+		messages.push(data);
+		socket.emit('message',messages);
+		socket.broadcast.emit('message',messages);
+		console.log(messages);
 	});
 });
+
 
 app.use('/scripts', express.static(__dirname + '/node_modules/'));
 app.use('/templates', express.static(__dirname + '/views/templates/'));

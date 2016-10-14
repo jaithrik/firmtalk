@@ -91,7 +91,7 @@ html {
   background: #28282B;
   top: 0;
   right: 0;
-  height: 150%;
+  height: 100%;
   width: 300px;
 }
 
@@ -139,7 +139,6 @@ html {
   width: 300px;
   height: 500px;
   background: grey;
-  overflow: scroll;
 }
 
 .conversation__header {
@@ -186,6 +185,15 @@ html {
   color: white;
 }
 
+.input_span{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
 .input_button {
   position: absolute;
   bottom: 0;

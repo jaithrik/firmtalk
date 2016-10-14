@@ -25,13 +25,12 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this.bidValue = '';
                     this.latest_message = '';
                     this.socket = io('http://localhost:8000');
-                    this.socket.on('priceUpdate', function (data) {
-                        this.price = data;
+                    this.socket.on('message', function (data) {
+                        this.messages = data;
                     }.bind(this));
                     this.showList = false;
                     this.showChat = false;
                     this.users = [{ id: 1, name: "Steve Jobs", source: "https://robohash.org/joe" }, { id: 2, name: "Bill Gates", source: "https://robohash.org/nah" }, { id: 3, name: "Mark Zuckerberg", source: "https://robohash.org/ok" }, { id: 4, name: "Denzel Washington", source: "https://robohash.org/hi" }];
-                    this.messages = [{ id: 1, text: "hey yo!", name: "Jaithrik", sender: true }, { id: 2, text: "hi", name: "Visal", sender: false }, { id: 3, text: "whats up?", name: "Jaithrik", sender: true }];
                 }
                 AppComponent.prototype.ShowList = function () {
                     this.showList = !this.showList;
@@ -42,8 +41,7 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     this.selectedGroup = username;
                 };
                 AppComponent.prototype.send = function () {
-                    this.socket.emit('message', this.latest_message);
-                    this.messages.push({ id: 10, text: this.latest_message, name: "Jaithrik", sender: true, });
+                    this.socket.emit('latest_message', { id: 10, text: this.latest_message, name: "Jaithrik", sender: true });
                     this.latest_message = '';
                 };
                 AppComponent = __decorate([

@@ -1,5 +1,8 @@
+
 <div> 
-    <button type="button" class="button js-trigger" (click) = "ShowList()">FirmTalk</button>
+    <object type="text/html" data="https://app.firmmanager.com/app/" width="100%" height="100%">
+    </object>
+    <button *ngIf="!showList" type="button" class="button js-trigger" (click) = "ShowList()">FirmTalk</button>
     
     <button *ngIf="showList" type="button" class="button js-trigger" style="right: 22%;" (click) = "ShowList()">FirmTalk</button>
 
@@ -26,7 +29,7 @@
         </li>
     </ul>
 <form action="">
-    <input class="input" [(ngModel)]="latest_message" type="text" placeholder="Enter Message"/><button class="input_button" (click) = "send();">Send</button>
+<input class="input" [(ngModel)]="latest_message" type="text" placeholder="Enter Message"/><button class="input_button" (click) = "send();">Send</button>
 </form>
 </div>
 
