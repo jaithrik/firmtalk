@@ -1,0 +1,33 @@
+<div> 
+    <button type="button" class="button js-trigger" (click) = "ShowList()">FirmTalk</button>
+    
+    <button *ngIf="showList" type="button" class="button js-trigger" style="right: 22%;" (click) = "ShowList()">FirmTalk</button>
+
+<div class="chat" *ngIf="showList">
+    <h2 class="chat__users">Groups</h2>
+    <ul class="chat__wrapper" *ngFor="#user of users">
+        <li class="chat__human" (click) = "ShowChat(user.name)">
+            <img class="chat__avatar" src="{{user.source}}" alt="" />
+            <span class="chat__name">{{user.name}}</span>
+        </li>
+    </ul>
+</div>
+
+<div class="conversation" *ngIf="showChat">
+    <div class="conversation__header">
+        {{selectedGroup}}
+        <span class="close-msg" (click) = "showChat = false;">&times;</span>
+    </div>
+     <ul class="conversation__wrap" style="overflow: scroll" *ngFor="#message of messages">
+        <li class="conversation__msg cf">
+            <span *ngIf="message.sender" class="right">{{message.text}}</span>
+            
+            <span *ngIf="!message.sender"><b>{{message.name}}</b>: {{message.text}}</span>
+        </li>
+    </ul>
+<form action="">
+    <input class="input" [(ngModel)]="latest_message" type="text" placeholder="Enter Message"/><button class="input_button" (click) = "send();">Send</button>
+</form>
+</div>
+
+</div>
